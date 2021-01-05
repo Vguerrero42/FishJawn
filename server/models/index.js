@@ -1,4 +1,4 @@
-let fishes = {
+const fishes = {
   1: {
     id: '1',
     name: 'Big Beurr'
@@ -12,6 +12,7 @@ let fishes = {
     name: 'the big kahuna'
   }
 }
+
 
 
 export default {

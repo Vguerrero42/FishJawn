@@ -6,6 +6,11 @@ export default gql`
     fish:(id: ID!): Fish!
   }
 
+  extend type Mutation {
+    addNewFish(name: String!): Fish!
+    removeFish(id:ID!): Boolean!
+    updateFish(id:ID!, name:String!): String!
+  }
   type Fish {
     id: ID!
     name: String!
