@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon dist/index.js",
+    "build": "babel src/index.js src -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/runtime-corejs3": "^7.12.5",
+    "core-js": "^3.8.2",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.19.1",
+    "cors": "^2.8.5",
+    "graphql": "^15.4.0",
+    "graphql-tools": "^7.0.2",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "uuid": "^8.3.2"
+  }
+}

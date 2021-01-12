@@ -13,6 +13,8 @@ const fishes = {
   }
 }
 
+// const fishes = ['he', "hjo", 'huu']
+
 
 
 export default {
