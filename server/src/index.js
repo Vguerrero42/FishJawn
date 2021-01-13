@@ -2,7 +2,9 @@ import cors from 'cors'
 import express from 'express'
 import { ApolloServer, graphiqlExpress } from 'apollo-server-express'
 
-import { typeDefs, resolvers } from "./db/graphql/schema"
+import { typeDefs, resolvers } from "./graphql/schema"
+
+import { db } from './db'
 
 const app = express()
 const schema = new ApolloServer({
@@ -17,6 +19,7 @@ schema.applyMiddleware({
   path: '/graphql'
 })
 
+db.sync()
 
 app.use((req, res) => {
   res.status(200),

@@ -5,14 +5,21 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var _types = require("sequelize/types");
+var _sequelize = require("sequelize");
 
-var fish = function fish(sequelize, DataTypes) {
-  var Fish = sequelize.define("fish", {
-    name: DataTypes.STRING
-  });
-  return Fish;
-};
+var _db = _interopRequireDefault(require("../db"));
 
-var _default = fish;
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var Fish = _db["default"].define('Fish', {
+  name: {
+    type: _sequelize.DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
+  }
+});
+
+var _default = Fish;
 exports["default"] = _default;

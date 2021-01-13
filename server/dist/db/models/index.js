@@ -3,15 +3,13 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-Object.defineProperty(exports, "db", {
+Object.defineProperty(exports, "Fish", {
   enumerable: true,
   get: function get() {
-    return _db["default"];
+    return _fish["default"];
   }
 });
 
-var _db = _interopRequireDefault(require("./db"));
-
-var _models = require("./models");
+var _fish = _interopRequireDefault(require("./fish"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }

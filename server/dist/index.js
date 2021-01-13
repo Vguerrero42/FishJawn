@@ -6,7 +6,9 @@ var _express = _interopRequireDefault(require("express"));
 
 var _apolloServerExpress = require("apollo-server-express");
 
-var _schema = require("./db/graphql/schema");
+var _schema = require("./graphql/schema");
+
+var _db = require("./db");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -20,6 +22,9 @@ schema.applyMiddleware({
   app: app,
   path: '/graphql'
 });
+
+_db.db.sync();
+
 app.use(function (req, res) {
   res.status(200), res.send('hello'), res.end();
 });

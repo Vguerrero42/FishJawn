@@ -1,9 +1,12 @@
-import { fishes } from "../models"
+import { Fish } from "../models"
 
 async function addFish(root, args, context) {
-  let { newFish } = args
-  fishes.push(newFish)
-  return fishes
+  let { name } = args
+  let newFish = await Fish.create({
+    name: name
+  })
+
+  return newFish
 }
 
 async function removeFish(root, args, context) {
