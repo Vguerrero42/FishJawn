@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getAllFishes = getAllFishes;
 exports.getFish = getFish;
+exports.hello = hello;
 
 require("regenerator-runtime/runtime.js");
 
@@ -94,4 +95,26 @@ function _getFish() {
     }, _callee2, null, [[0, 10]]);
   }));
   return _getFish.apply(this, arguments);
+}
+
+function hello(_x7, _x8, _x9) {
+  return _hello.apply(this, arguments);
+}
+
+function _hello() {
+  _hello = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(root, args, context) {
+    return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            return _context3.abrupt("return", "Hello,how are you, i am under the water");
+
+          case 1:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+  return _hello.apply(this, arguments);
 }

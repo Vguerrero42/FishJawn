@@ -14,6 +14,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.addFish = addFish;
 exports.removeFish = removeFish;
 exports.updateFish = updateFish;
+exports.numSon = numSon;
 
 require("regenerator-runtime/runtime.js");
 
@@ -102,4 +103,28 @@ function _updateFish() {
     }, _callee3);
   }));
   return _updateFish.apply(this, arguments);
+}
+
+function numSon(_x10, _x11, _x12) {
+  return _numSon.apply(this, arguments);
+}
+
+function _numSon() {
+  _numSon = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, args, context) {
+    var numToAdd;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            numToAdd = args.numToAdd;
+            return _context4.abrupt("return", "".concat(numToAdd, " + 69 = ").concat(69 + numToAdd));
+
+          case 2:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+  return _numSon.apply(this, arguments);
 }

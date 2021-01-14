@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import db from '../db'
 
-const Fish = db.define('Fish', {
+const Fish = db.define('fish', {
   name: {
     type: DataTypes.STRING,
     allowNull: false,

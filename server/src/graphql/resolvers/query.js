@@ -24,7 +24,12 @@ async function getFish(root, args, context) {
   }
 }
 
+async function hello(root, args, context) {
+  return "Hello,how are you, i am under the water"
+}
+
 export {
   getAllFishes,
-  getFish
+  getFish,
+  hello
 }

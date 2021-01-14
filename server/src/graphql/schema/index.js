@@ -9,12 +9,14 @@ const rootTypeDefs = gql`
 type Query {
   getAllFishes:[Fish]
   getFish(id: ID!): Fish!
+  hello:String
 }
 
 type Mutation {
   addFish(name: String!): Fish!
   removeFish(id: ID!): Boolean!
   updateFish(id: ID!, name: String!): String!
+  numSon(numToAdd:Int):String
 }
 `
 

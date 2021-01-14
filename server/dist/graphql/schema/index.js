@@ -28,7 +28,7 @@ var _resolvers = _interopRequireDefault(require("../resolvers"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ntype Query {\n  getAllFishes:[Fish]\n  getFish(id: ID!): Fish!\n}\n\ntype Mutation {\n  addFish(name: String!): Fish!\n  removeFish(id: ID!): Boolean!\n  updateFish(id: ID!, name: String!): String!\n}\n"]);
+  var data = _taggedTemplateLiteral(["\ntype Query {\n  getAllFishes:[Fish]\n  getFish(id: ID!): Fish!\n  hello:String\n}\n\ntype Mutation {\n  addFish(name: String!): Fish!\n  removeFish(id: ID!): Boolean!\n  updateFish(id: ID!, name: String!): String!\n  numSon(numToAdd:Int):String\n}\n"]);
 
   _templateObject = function _templateObject() {
     return data;

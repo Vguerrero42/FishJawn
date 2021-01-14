@@ -22,8 +22,14 @@ async function updateFish(root, args, context) {
   return `${oldFish} will now be known as ${fishes[id]}`
 }
 
+async function numSon(root, args, context) {
+  let { numToAdd } = args
+  return `${numToAdd} + 69 = ${69 + numToAdd}`
+}
+
 export {
   addFish,
   removeFish,
-  updateFish
+  updateFish,
+  numSon
 }
