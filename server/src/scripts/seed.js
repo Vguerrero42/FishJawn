@@ -43,4 +43,3 @@ const runSeed = async () => {
 }
 
 runSeed()
-console.log(fishes)

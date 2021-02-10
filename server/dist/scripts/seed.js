@@ -106,4 +106,3 @@ var runSeed = /*#__PURE__*/function () {
 }();
 
 runSeed();
-console.log(fishes);
