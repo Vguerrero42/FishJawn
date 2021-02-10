@@ -20,5 +20,5 @@ exports.typeDefs = void 0;
 //     name: String!
 // }
 // `
-var typeDefs = "\n   type Fish {\n       id: ID!\n       name: String! \n   }\n";
+var typeDefs = "\n   type Fish {\n       id: ID!\n       name: String!\n       description: String!\n   }\n";
 exports.typeDefs = typeDefs;

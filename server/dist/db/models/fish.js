@@ -18,6 +18,13 @@ var Fish = _db["default"].define('fish', {
     validate: {
       notEmpty: true
     }
+  },
+  description: {
+    type: _sequelize.DataTypes.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 });
 

@@ -1,27 +1,36 @@
 import { Fish } from '../db/models'
 import { db } from '../db'
-console.log(db)
 
-let fishes = [
-  {
-    name: 'charles'
-  },
-  {
-    name: 'eeyore'
-  },
-  {
-    name: 'little finger'
-  },
-  {
-    name: 'goldenEye'
-  },
-  {
-    name: 'Fruit'
-  },
-  {
-    name: 'charles2'
-  }
-]
+const fs = require('fs')
+
+// const getFishes = () => {
+//   let fileData = {}
+//   fs.readFile('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8', (err, data) => {
+//     if (err) {
+//       console.log(err)
+//       return
+//     }
+//     fileData = JSON.parse(data)
+//   })
+//   return fileData
+// }
+
+
+
+let fishes = []
+
+let fishObj = JSON.parse(fs.readFileSync('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8'))
+
+
+for (let fish in fishObj) {
+  // console.log('fish', fish)
+  fishes.push({
+    name: String(fish),
+    description: String(fishObj[fish])
+  })
+}
+
+
 
 const seed = async () => {
   await db.sync()
@@ -45,3 +54,4 @@ const runSeed = async () => {
 }
 
 runSeed()
+console.log(fishes)

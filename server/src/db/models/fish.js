@@ -8,6 +8,13 @@ const Fish = db.define('fish', {
     validate: {
       notEmpty: true
     }
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   }
 })
 

@@ -20,6 +20,7 @@
 export const typeDefs = `
    type Fish {
        id: ID!
-       name: String! 
+       name: String!
+       description: String!
    }
 `
