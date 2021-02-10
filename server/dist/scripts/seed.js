@@ -14,24 +14,15 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var fs = require('fs'); // const getFishes = () => {
-//   let fileData = {}
-//   fs.readFile('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8', (err, data) => {
-//     if (err) {
-//       console.log(err)
-//       return
-//     }
-//     fileData = JSON.parse(data)
-//   })
-//   return fileData
-// }
+require('../../../secrets');
 
+var fs = require('fs');
 
 var fishes = [];
-var fishObj = JSON.parse(fs.readFileSync('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8'));
+var dataPath = process.env.FISH_DATA_PATH;
+var fishObj = JSON.parse(fs.readFileSync("".concat(dataPath, "/fishData.txt"), 'utf8'));
 
 for (var fish in fishObj) {
-  // console.log('fish', fish)
   fishes.push({
     name: String(fish),
     description: String(fishObj[fish])

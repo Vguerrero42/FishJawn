@@ -1,29 +1,18 @@
 import { Fish } from '../db/models'
 import { db } from '../db'
 
+require('../../../secrets')
+
 const fs = require('fs')
-
-// const getFishes = () => {
-//   let fileData = {}
-//   fs.readFile('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8', (err, data) => {
-//     if (err) {
-//       console.log(err)
-//       return
-//     }
-//     fileData = JSON.parse(data)
-//   })
-//   return fileData
-// }
-
 
 
 let fishes = []
+let dataPath = process.env.FISH_DATA_PATH
 
-let fishObj = JSON.parse(fs.readFileSync('/home/victor/Projects/FishJawnDBData/fishData.txt', 'utf8'))
+let fishObj = JSON.parse(fs.readFileSync(`${dataPath}/fishData.txt`, 'utf8'))
 
 
 for (let fish in fishObj) {
-  // console.log('fish', fish)
   fishes.push({
     name: String(fish),
     description: String(fishObj[fish])
