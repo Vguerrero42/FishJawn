@@ -51,6 +51,9 @@ const styles = StyleSheet.create({
   innerHeader: {
     padding: 20,
   },
+  innerFooter: {
+
+  },
   recentCatches: {
     borderWidth: 2,
     padding: 20,
