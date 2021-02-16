@@ -4,5 +4,6 @@
   "packagerPort": 19000,
   "expoServerNgrokUrl": "https://iv-bx4.anonymous.client.exp.direct",
   "packagerNgrokUrl": "https://packager.iv-bx4.anonymous.client.exp.direct",
-  "ngrokPid": 8926
+  "ngrokPid": 30069,
+  "webpackServerPort": 19006
 }
