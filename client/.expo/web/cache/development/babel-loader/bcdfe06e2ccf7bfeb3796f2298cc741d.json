@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Home from \"./home\";\nexport { Home };","map":{"version":3,"sources":["/home/victor/Projects/FishJawn/client/components/index.js"],"names":["Home"],"mappings":"AAAA,OAAOA,IAAP;AAuBA,SACEA,IADF","sourcesContent":["import Home from './home'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nexport {\n  Home\n}"]},"metadata":{},"sourceType":"module"}
