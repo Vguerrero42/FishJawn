@@ -12,25 +12,28 @@ const LandingPage = () =>{
       userName,
       password
     }
+    onUserTextChange('')
+    onPassTextChange('')
     console.log(userObj)
+    // this.props.navigation.navigate('LandingPage')
   }
   return(
     <View style = {styles.landingContainer}>
       <View style={styles.landingPage} >
         <View style={localStyle.loginContainer} >
-        <Text>Enter Username</Text>
+        <Text style={localStyle.text}>Enter Username</Text>
         <TextInput  
           style={localStyle.inputBox}
           onChangeText={text => onUserTextChange(text)}
           value ={userName}>
         </TextInput>
-        <Text>Enter Password</Text>
+        <Text style={localStyle.text} >Enter Password</Text>
         <TextInput  
           style={localStyle.inputBox}
           onChangeText={text => onPassTextChange(text)}
           value ={password}>
         </TextInput>
-        <Button color='blue' title="login" onPress={handleLogin}/>
+        <Button color='#81B29A' title="login" onPress={handleLogin}/>
         </View>
         <View style={localStyle.linkContainer}>
           <Text style={localStyle.textButton} onPress={()=>console.log('Register Press')}>Register</Text>
@@ -45,19 +48,22 @@ const LandingPage = () =>{
 const localStyle = StyleSheet.create({
   loginContainer:{
     alignContent:'center',
-    justifyContent:'center',
+    justifyContent:'space-evenly',
     alignItems:'center',
-    // borderWidth:2
+    flexDirection:'column',
+    borderWidth:2,
+    height:200
   },
   linkContainer:{
     alignSelf:'flex-end',
     bottom:-70,
-    width:'50%',
+    width:'40%',
     height:60,
     flexDirection:'column',
     alignItems:'flex-start',
     alignContent:'center',
-    justifyContent:'space-evenly'
+    justifyContent:'space-evenly',
+    borderWidth:2
   },
   textButton:{
     flex:1,
@@ -71,7 +77,9 @@ const localStyle = StyleSheet.create({
     margin:10,
     padding:5,
     borderWidth:2,
-    borderRadius:20
+    borderRadius:20,
+  },
+  text:{
   }
 })
 
