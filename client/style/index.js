@@ -11,8 +11,7 @@ const styles = StyleSheet.create({
   },
   landingContainer:{
     flex:1,
-    justifyContent:'center'
-
+    justifyContent:'center',
   },
   landingPage:{
     alignItems:'center',
