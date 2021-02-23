@@ -1,10 +1,11 @@
-import { Fish } from '../db/models'
+import { Fish,User } from '../db/'
 import { db } from '../db'
+import users from './userSeed'
 
 require('../../../secrets')
 
 const fs = require('fs')
-
+console.log(users)
 
 let fishes = []
 let dataPath = process.env.FISH_DATA_PATH
@@ -20,10 +21,10 @@ for (let fish in fishObj) {
 }
 
 
-
 const seed = async () => {
   await db.sync()
   await Fish.bulkCreate(fishes)
+  await User.bulkCreate(users)
   await console.log('seed Success!')
   db.close()
 }

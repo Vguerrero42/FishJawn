@@ -19,16 +19,16 @@ exports.typeDefs = void 0;
 
 var _apolloServerExpress = require("apollo-server-express");
 
-var _graphqlTools = require("graphql-tools");
-
 var _fish = require("./fish");
+
+var _user = require("./user");
 
 var _resolvers = _interopRequireDefault(require("../resolvers"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ntype Query {\n  getAllFishes:[Fish]\n  getFish(id: ID!): Fish!\n  hello:String\n}\n\ntype Mutation {\n  addFish(name: String!): Fish!\n  removeFish(id: ID!): Boolean!\n  updateFish(id: ID!, name: String!): String!\n  numSon(numToAdd:Int):String\n}\n"]);
+  var data = _taggedTemplateLiteral(["\ntype Query {\n  getAllFishes:[Fish]\n  getFish(id: ID!):Fish\n  getAllUsers:[User]\n  getUser(id:ID!):User\n  hello:String\n}\n\ntype Mutation {\n  addFish(name: String!): Fish!\n  removeFish(id: ID!): String!\n  updateFish(id: ID!, name: String!): String!\n  addUser(userName:String!,email:String!,password:String!):User!\n  removeUser(id:ID!):String!\n}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -39,9 +39,6 @@ function _templateObject() {
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
-var rootTypeDefs = (0, _apolloServerExpress.gql)(_templateObject()); // const schema = makeExecutableSchema({
-//   typeDefs: [typeDefs, Fish], resolvers
-// })
-
-var typeDefs = [rootTypeDefs, _fish.typeDefs];
+var rootTypeDefs = (0, _apolloServerExpress.gql)(_templateObject());
+var typeDefs = [rootTypeDefs, _fish.typeDefs, _user.typeDefs];
 exports.typeDefs = typeDefs;

@@ -1,11 +1,10 @@
-import { Fish } from "../models"
+import { Fish,User } from "../models"
 
 async function addFish(root, args, context) {
   let { name } = args
   let newFish = await Fish.create({
     name: name
   })
-
   return newFish
 }
 
@@ -22,14 +21,33 @@ async function updateFish(root, args, context) {
   return `${oldFish} will now be known as ${fishes[id]}`
 }
 
-async function numSon(root, args, context) {
-  let { numToAdd } = args
-  return `${numToAdd} + 69 = ${69 + numToAdd}`
+async function addUser(root, args, context) {
+  let { userName,email,password } = args
+  let newUser = await User.create({
+    userName,
+    email,
+    password
+  })
+
+  return newUser
 }
+
+async function removeUser(root, args, context) {
+  let { id } = args
+  let user = await User.findByID(id)
+  return `This user was removed: ${user}`
+}
+
+
+
+
+
+
 
 export {
   addFish,
   removeFish,
   updateFish,
-  numSon
+  addUser,
+  removeUser
 }

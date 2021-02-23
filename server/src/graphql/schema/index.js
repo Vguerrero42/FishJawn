@@ -1,29 +1,29 @@
 import { gql } from 'apollo-server-express'
-import { makeExecutableSchema } from 'graphql-tools'
 
 import { typeDefs as Fish } from "./fish"
-
+import { typeDefs as User } from "./user"
 import resolvers from "../resolvers"
 
 const rootTypeDefs = gql`
 type Query {
   getAllFishes:[Fish]
-  getFish(id: ID!): Fish!
+  getFish(id: ID!):Fish
+  getAllUsers:[User]
+  getUser(id:ID!):User
   hello:String
 }
 
 type Mutation {
   addFish(name: String!): Fish!
-  removeFish(id: ID!): Boolean!
+  removeFish(id: ID!): String!
   updateFish(id: ID!, name: String!): String!
-  numSon(numToAdd:Int):String
+  addUser(userName:String!,email:String!,password:String!):User!
+  removeUser(id:ID!):String!
 }
 `
 
-// const schema = makeExecutableSchema({
-//   typeDefs: [typeDefs, Fish], resolvers
-// })
-const typeDefs = [rootTypeDefs, Fish]
+
+const typeDefs = [rootTypeDefs, Fish,User]
 export {
   typeDefs,
   resolvers

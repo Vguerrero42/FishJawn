@@ -1,6 +1,8 @@
 import db from './db'
-import { Fish } from './models'
+import { Fish,User } from './models'
 
 export {
-  db
+  db,
+  Fish,
+  User
 }

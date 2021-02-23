@@ -6,9 +6,13 @@ require("core-js/modules/es.promise.js");
 
 require("regenerator-runtime/runtime.js");
 
-var _models = require("../db/models");
+var _db = require("../db/");
 
-var _db = require("../db");
+var _db2 = require("../db");
+
+var _userSeed = _interopRequireDefault(require("./userSeed"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -18,6 +22,7 @@ require('../../../secrets');
 
 var fs = require('fs');
 
+console.log(_userSeed["default"]);
 var fishes = [];
 var dataPath = process.env.FISH_DATA_PATH;
 var fishObj = JSON.parse(fs.readFileSync("".concat(dataPath, "/fishData.txt"), 'utf8'));
@@ -36,20 +41,24 @@ var seed = /*#__PURE__*/function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _db.db.sync();
+            return _db2.db.sync();
 
           case 2:
             _context.next = 4;
-            return _models.Fish.bulkCreate(fishes);
+            return _db.Fish.bulkCreate(fishes);
 
           case 4:
             _context.next = 6;
-            return console.log('seed Success!');
+            return _db.User.bulkCreate(_userSeed["default"]);
 
           case 6:
-            _db.db.close();
+            _context.next = 8;
+            return console.log('seed Success!');
 
-          case 7:
+          case 8:
+            _db2.db.close();
+
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -86,7 +95,7 @@ var runSeed = /*#__PURE__*/function () {
             _context2.prev = 9;
             console.log('Closing Connection');
             _context2.next = 13;
-            return _db.db.close();
+            return _db2.db.close();
 
           case 13:
             console.log('Connection Closed');

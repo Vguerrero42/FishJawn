@@ -14,7 +14,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.addFish = addFish;
 exports.removeFish = removeFish;
 exports.updateFish = updateFish;
-exports.numSon = numSon;
+exports.addUser = addUser;
+exports.removeUser = removeUser;
 
 require("regenerator-runtime/runtime.js");
 
@@ -105,26 +106,64 @@ function _updateFish() {
   return _updateFish.apply(this, arguments);
 }
 
-function numSon(_x10, _x11, _x12) {
-  return _numSon.apply(this, arguments);
+function addUser(_x10, _x11, _x12) {
+  return _addUser.apply(this, arguments);
 }
 
-function _numSon() {
-  _numSon = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, args, context) {
-    var numToAdd;
+function _addUser() {
+  _addUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, args, context) {
+    var userName, email, password, newUser;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            numToAdd = args.numToAdd;
-            return _context4.abrupt("return", "".concat(numToAdd, " + 69 = ").concat(69 + numToAdd));
+            userName = args.userName, email = args.email, password = args.password;
+            _context4.next = 3;
+            return _models.User.create({
+              userName: userName,
+              email: email,
+              password: password
+            });
 
-          case 2:
+          case 3:
+            newUser = _context4.sent;
+            return _context4.abrupt("return", newUser);
+
+          case 5:
           case "end":
             return _context4.stop();
         }
       }
     }, _callee4);
   }));
-  return _numSon.apply(this, arguments);
+  return _addUser.apply(this, arguments);
+}
+
+function removeUser(_x13, _x14, _x15) {
+  return _removeUser.apply(this, arguments);
+}
+
+function _removeUser() {
+  _removeUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, args, context) {
+    var id, user;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            id = args.id;
+            _context5.next = 3;
+            return _models.User.findByID(id);
+
+          case 3:
+            user = _context5.sent;
+            return _context5.abrupt("return", "This user was removed: ".concat(user));
+
+          case 5:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+  return _removeUser.apply(this, arguments);
 }

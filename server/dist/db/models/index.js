@@ -9,7 +9,15 @@ Object.defineProperty(exports, "Fish", {
     return _fish["default"];
   }
 });
+Object.defineProperty(exports, "User", {
+  enumerable: true,
+  get: function get() {
+    return _user["default"];
+  }
+});
 
 var _fish = _interopRequireDefault(require("./fish"));
+
+var _user = _interopRequireDefault(require("./user"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
