@@ -29,7 +29,7 @@ const LandingPage = ({navigation}) =>{
     onUserTextChange('')
     onPassTextChange('')
     navigation.navigate('Home')
-    // this.props.navigation.navigate('LandingPage')
+
   }
   return(
     <View style = {styles.landingContainer}>
