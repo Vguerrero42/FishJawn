@@ -14,7 +14,7 @@ type Query {
 }
 
 type Mutation {
-  addFish(name: String!): Fish!
+  addFish(name: String!,description:String!): Fish!
   removeFish(id: ID!): String!
   updateFish(id: ID!, name: String!): String!
   addUser(userName:String!,email:String!,password:String!):User!

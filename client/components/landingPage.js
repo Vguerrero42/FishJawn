@@ -2,12 +2,16 @@ import React,{useState} from 'react'
 import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import styles from '../style'
-import {gql,useLazyQuery} from '@apollo/client'
+import {gql,useLazyQuery,useMutation} from '@apollo/client'
 
 
-const GET_FISHES = gql`
-  query getAllFishes {
-    name
+const ADD_NEW_USER = gql`
+  mutation addUser($userName:String!,$email:String!,$password:String!) {
+    addUser(userName:$userName,email:$email,
+    password:$password){
+      userName
+      email
+    }
   }
 `
 
@@ -15,24 +19,19 @@ const LandingPage = () =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
-  const [getFeesh,{called,loading,error,data}] = useLazyQuery(GET_FISHES)
+  const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
 
-  if(error) return console.log('ruhroh breh')
-  if(loading) return console.log('Loading breh')
-
+  if(loading) return 'Loading'
   const handleLogin = () => {
-    let userObj = {
-      userName,
-      password
-    }
+    let email = userName + '@ggmail.com'
+    console.log(email)
+    addUser({variables:{userName,email,password}})
     onUserTextChange('')
     onPassTextChange('')
-    console.log(userObj)
-    console.log(getFeesh)
-    getFeesh()
-    console.log('data',data)
     // this.props.navigation.navigate('LandingPage')
   }
+
+  if(called && data) console.log('success',data)
   return(
     <View style = {styles.landingContainer}>
       <View style={styles.landingPage} >
