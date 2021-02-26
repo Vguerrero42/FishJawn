@@ -15,7 +15,7 @@ const ADD_NEW_USER = gql`
   }
 `
 
-const LandingPage = () =>{
+const LandingPage = ({navigation}) =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
@@ -28,10 +28,9 @@ const LandingPage = () =>{
     addUser({variables:{userName,email,password}})
     onUserTextChange('')
     onPassTextChange('')
+    navigation.navigate('Home')
     // this.props.navigation.navigate('LandingPage')
   }
-
-  if(called && data) console.log('success',data)
   return(
     <View style = {styles.landingContainer}>
       <View style={styles.landingPage} >
