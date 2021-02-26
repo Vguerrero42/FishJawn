@@ -2,10 +2,23 @@ import React,{useState} from 'react'
 import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import styles from '../style'
+import {gql,useLazyQuery} from '@apollo/client'
+
+
+const GET_FISHES = gql`
+  query getAllFishes {
+    name
+  }
+`
 
 const LandingPage = () =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
+
+  const [getFeesh,{called,loading,error,data}] = useLazyQuery(GET_FISHES)
+
+  if(error) return console.log('ruhroh breh')
+  if(loading) return console.log('Loading breh')
 
   const handleLogin = () => {
     let userObj = {
@@ -15,6 +28,9 @@ const LandingPage = () =>{
     onUserTextChange('')
     onPassTextChange('')
     console.log(userObj)
+    console.log(getFeesh)
+    getFeesh()
+    console.log('data',data)
     // this.props.navigation.navigate('LandingPage')
   }
   return(

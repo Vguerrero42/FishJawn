@@ -14,6 +14,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var app = (0, _express["default"])();
 var schema = new _apolloServerExpress.ApolloServer({
+  cors: true,
   typeDefs: _schema.typeDefs,
   resolvers: _schema.resolvers
 });

@@ -3,6 +3,7 @@ import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert} from 
 import { StatusBar } from 'expo-status-bar';
 import styles from '../style'
 import {useState} from '@react-native-community/hooks'
+import { gql, useQuery } from '@apollo/client'
 
 const Home = () => {
   const handleMapTouch = () =>{

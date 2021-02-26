@@ -8,6 +8,7 @@ import { db } from './db'
 
 const app = express()
 const schema = new ApolloServer({
+  cors:true,
   typeDefs,
   resolvers
 })
