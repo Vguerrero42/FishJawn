@@ -46,7 +46,7 @@ async function login(root,args,context) {
       email: args.email
     }})
     if(!user){
-      return `No such user ${args.email}`
+      return `No such user with email ${args.email}`
     }
     if(!user.correctPassword(args.password)){
 
