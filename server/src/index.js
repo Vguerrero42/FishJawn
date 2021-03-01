@@ -1,16 +1,23 @@
 import cors from 'cors'
 import express from 'express'
-import { ApolloServer, graphiqlExpress } from 'apollo-server-express'
+import { ApolloServer } from 'apollo-server-express'
 
 import { typeDefs, resolvers } from "./graphql/schema"
 
 import { db } from './db'
 
 const app = express()
+
 const schema = new ApolloServer({
   cors:true,
   typeDefs,
-  resolvers
+  resolvers,
+  context:({req}) => {
+    const auth = req.headers.authorization || ''
+    return {
+      auth
+    }
+  }
 })
 
 const PORT = 3000

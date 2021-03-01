@@ -40,6 +40,23 @@ async function removeUser(root, args, context) {
   return `This user was removed: ${user}`
 }
 
+async function login(root,args,context) {
+  try {
+    const user = await  User.findOne({where:{
+      email: args.email
+    }})
+    if(!user){
+      return `No such user ${args.email}`
+    }
+    if(!user.correctPassword(args.password)){
+
+    }
+
+  } catch (error) {
+    
+  }
+}
+
 // async function login(root,args,context) {
 
 // }
