@@ -1,5 +1,7 @@
 import { Fish,User } from "../../db"
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
+
+const JWT_SECRET = process.env.JWT_SECRET
 
 async function addFish(root, args, context) {
   let { name,description } = args
@@ -23,20 +25,23 @@ async function updateFish(root, args, context) {
   return `${oldFish} will now be known as ${fishes[id]}`
 }
 
-async function addUser(root, args, context) {
+async function addUser(root, { userName,email,password }, context) {
   console.log('usercreate')
-  let { userName,email,password } = args
-  let newUser = await User.create({
-    userName,
-    email,
-    password
-  })
-
-  return newUser
+  try {
+    const newUser = await User.create({
+      userName,
+      email,
+      password
+    })
+    console.log('end of func')
+    return newUser
+  } catch (error) {
+    throw new Error(error)
+  }
 }
 
-async function removeUser(root, args, context) {
-  let { id } = args
+
+async function removeUser(root, {id}, context) {
   let user = await User.findByID(id)
   return `This user was removed: ${user}`
 }
@@ -50,9 +55,13 @@ async function login(root,{email,password},context) {
       return `No such user with email ${email}`
     }
     if(!user.correctPassword(password)){
-      console.log("loggedIN")
+      console.log("Wrong Password")
+      throw new Error('Incorrect Password')
     }
-
+    const token = jwt.sign(
+      {id:user.id,email:user.email},JWT_SECRET
+      )
+      return {token,user}
   } catch (error) {
     
   }
@@ -72,6 +81,7 @@ export {
   addFish,
   removeFish,
   updateFish,
+  login,
   addUser,
   removeUser
 }

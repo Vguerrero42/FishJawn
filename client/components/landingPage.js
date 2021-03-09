@@ -14,25 +14,33 @@ const ADD_NEW_USER = gql`
     }
   }
 `
-
-const LOGIN_AUTH = gql
+const LOGIN = gql`
+  mutation login($email:String!,$password:String!){
+    login(email:$email,password:$password){
+      AuthPayload
+    }
+  }
+`
 
 const LandingPage = ({navigation}) =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
-  const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
+  // const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
+  const [login,{called,loading,error,data}] = useMutation(LOGIN)
 
   if(loading) return 'Loading'
-  
-  const handleLogin = () => {
-    let email = userName + '@ggmail.com'
-    console.log(email)
-    addUser({variables:{userName,email,password}})
+
+  const handleLogin = async () => {
+    const email = `${userName}@ggmail.com`
+    const {data} = await login({variables:{userName,email,password}})
     onUserTextChange('')
     onPassTextChange('')
+    if(!data.token) console.log(token) 
+    else {
+    console.log(data)
     navigation.navigate('Home')
-
+    }
   }
   return(
     <View style = {styles.landingContainer}>

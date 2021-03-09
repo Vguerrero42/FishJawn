@@ -1,21 +1,35 @@
 import cors from 'cors'
 import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
+import jwt from 'jsonwebtoken'
 
 import { typeDefs, resolvers } from "./graphql/schema"
 
 import { db } from './db'
 
+const JWT_SECRET = process.env.JWT_SECRET
+
 const app = express()
 
+const getUser = token =>{
+  try {
+    if(token){
+      return jwt.verify(token,JWT_SECRET)
+    }
+    return null
+  } catch (error) {
+    return null
+  }
+}
 const schema = new ApolloServer({
   cors:true,
   typeDefs,
   resolvers,
   context:({req}) => {
-    const auth = req.headers.authorization || ''
+    const token = req.headers.authorization || ''
+    const user = getUser(token.replace('Bearer',''))
     return {
-      auth
+      user
     }
   }
 })

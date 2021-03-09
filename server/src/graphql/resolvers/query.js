@@ -31,6 +31,11 @@ async function getFish(root, args, context) {
   }
 }
 
+async function me(root,args,{user}){
+  if(!user) throw new Error('You are not authenticated')
+  return await User.findByPk(user.id)
+}
+
 async function getAllUsers(root,args,context){
   try {
     let users = await User.findAll()
@@ -71,6 +76,7 @@ async function hello(root, args, context) {
 export {
   getAllFishes,
   getFish,
+  me,
   getAllUsers,
   getUser,
   hello

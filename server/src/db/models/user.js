@@ -1,4 +1,4 @@
-import * as bcrypt from 'bcrypt' 
+import bcrypt from 'bcrypt' 
 import { DataTypes } from 'sequelize'
 import db from '../db'
 
@@ -49,7 +49,7 @@ export default User
  * instanceMethods
  */
 User.prototype.correctPassword = function(candidatePwd) {
-  return User.encryptPassword(candidatePwd, this.salt()) === this.password()
+  return bcrypt.compareSync(candidatePwd,this.password)
 }
 
 /**

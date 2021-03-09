@@ -11,6 +11,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.getAllFishes = getAllFishes;
 exports.getFish = getFish;
+exports.me = me;
 exports.getAllUsers = getAllUsers;
 exports.getUser = getUser;
 exports.hello = hello;
@@ -120,121 +121,158 @@ function _getFish() {
   return _getFish.apply(this, arguments);
 }
 
-function getAllUsers(_x7, _x8, _x9) {
-  return _getAllUsers.apply(this, arguments);
+function me(_x7, _x8, _x9) {
+  return _me.apply(this, arguments);
 }
 
-function _getAllUsers() {
-  _getAllUsers = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(root, args, context) {
-    var users;
+function _me() {
+  _me = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(root, args, _ref) {
+    var user;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            _context3.prev = 0;
-            _context3.next = 3;
-            return _db.User.findAll();
+            user = _ref.user;
 
-          case 3:
-            users = _context3.sent;
-
-            if (!users.length) {
-              _context3.next = 8;
+            if (user) {
+              _context3.next = 3;
               break;
             }
 
-            return _context3.abrupt("return", users);
+            throw new Error('You are not authenticated');
 
-          case 8:
-            return _context3.abrupt("return", 'None users bro :/');
+          case 3:
+            _context3.next = 5;
+            return _db.User.findByPk(user.id);
 
-          case 9:
-            _context3.next = 14;
-            break;
+          case 5:
+            return _context3.abrupt("return", _context3.sent);
 
-          case 11:
-            _context3.prev = 11;
-            _context3.t0 = _context3["catch"](0);
-            return _context3.abrupt("return", "".concat(_context3.t0));
-
-          case 14:
+          case 6:
           case "end":
             return _context3.stop();
         }
       }
-    }, _callee3, null, [[0, 11]]);
+    }, _callee3);
   }));
+  return _me.apply(this, arguments);
+}
+
+function getAllUsers(_x10, _x11, _x12) {
   return _getAllUsers.apply(this, arguments);
 }
 
-function getUser(_x10, _x11, _x12) {
-  return _getUser.apply(this, arguments);
-}
-
-function _getUser() {
-  _getUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, args, context) {
-    var id, user;
+function _getAllUsers() {
+  _getAllUsers = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, args, context) {
+    var users;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.prev = 0;
-            id = args.id;
-            id = Number(id);
-            console.log(id);
-            _context4.next = 6;
-            return _db.User.findByPk(id);
+            _context4.next = 3;
+            return _db.User.findAll();
 
-          case 6:
-            user = _context4.sent;
+          case 3:
+            users = _context4.sent;
 
-            if (!user) {
-              _context4.next = 11;
+            if (!users.length) {
+              _context4.next = 8;
               break;
             }
 
-            return _context4.abrupt("return", user);
+            return _context4.abrupt("return", users);
+
+          case 8:
+            return _context4.abrupt("return", 'None users bro :/');
+
+          case 9:
+            _context4.next = 14;
+            break;
+
+          case 11:
+            _context4.prev = 11;
+            _context4.t0 = _context4["catch"](0);
+            return _context4.abrupt("return", "".concat(_context4.t0));
+
+          case 14:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[0, 11]]);
+  }));
+  return _getAllUsers.apply(this, arguments);
+}
+
+function getUser(_x13, _x14, _x15) {
+  return _getUser.apply(this, arguments);
+}
+
+function _getUser() {
+  _getUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, args, context) {
+    var id, user;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            id = args.id;
+            id = Number(id);
+            console.log(id);
+            _context5.next = 6;
+            return _db.User.findByPk(id);
+
+          case 6:
+            user = _context5.sent;
+
+            if (!user) {
+              _context5.next = 11;
+              break;
+            }
+
+            return _context5.abrupt("return", user);
 
           case 11:
             'User Not Found';
 
           case 12:
-            _context4.next = 17;
+            _context5.next = 17;
             break;
 
           case 14:
-            _context4.prev = 14;
-            _context4.t0 = _context4["catch"](0);
-            return _context4.abrupt("return", "".concat(_context4.t0));
+            _context5.prev = 14;
+            _context5.t0 = _context5["catch"](0);
+            return _context5.abrupt("return", "".concat(_context5.t0));
 
           case 17:
-          case "end":
-            return _context4.stop();
-        }
-      }
-    }, _callee4, null, [[0, 14]]);
-  }));
-  return _getUser.apply(this, arguments);
-}
-
-function hello(_x13, _x14, _x15) {
-  return _hello.apply(this, arguments);
-}
-
-function _hello() {
-  _hello = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, args, context) {
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
-      while (1) {
-        switch (_context5.prev = _context5.next) {
-          case 0:
-            return _context5.abrupt("return", "Hello,how are you, i am under the water");
-
-          case 1:
           case "end":
             return _context5.stop();
         }
       }
-    }, _callee5);
+    }, _callee5, null, [[0, 14]]);
+  }));
+  return _getUser.apply(this, arguments);
+}
+
+function hello(_x16, _x17, _x18) {
+  return _hello.apply(this, arguments);
+}
+
+function _hello() {
+  _hello = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(root, args, context) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            return _context6.abrupt("return", "Hello,how are you, i am under the water");
+
+          case 1:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
   }));
   return _hello.apply(this, arguments);
 }

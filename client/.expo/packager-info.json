@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "webpackServerPort": null
+  "expoServerNgrokUrl": "https://iv-bx4.v-expo-xpo.client.exp.direct",
+  "packagerNgrokUrl": "https://packager.iv-bx4.v-expo-xpo.client.exp.direct",
+  "ngrokPid": 25228,
+  "webpackServerPort": 19006
 }
