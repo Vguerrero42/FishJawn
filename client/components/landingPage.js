@@ -15,6 +15,8 @@ const ADD_NEW_USER = gql`
   }
 `
 
+const LOGIN_AUTH = gql
+
 const LandingPage = ({navigation}) =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
@@ -22,6 +24,7 @@ const LandingPage = ({navigation}) =>{
   const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
 
   if(loading) return 'Loading'
+  
   const handleLogin = () => {
     let email = userName + '@ggmail.com'
     console.log(email)

@@ -17,6 +17,7 @@ type Mutation {
   addFish(name: String!,description:String!): Fish!
   removeFish(id: ID!): String!
   updateFish(id: ID!, name: String!): String!
+  login(email:String!,password:String!):String!
   addUser(userName:String!,email:String!,password:String!):User!
   removeUser(id:ID!):String!
 }

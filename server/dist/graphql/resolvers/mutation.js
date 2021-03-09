@@ -1,5 +1,7 @@
 "use strict";
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
 require("core-js/modules/es.symbol.js");
 
 require("core-js/modules/es.symbol.description.js");
@@ -24,6 +26,12 @@ exports.removeUser = removeUser;
 require("regenerator-runtime/runtime.js");
 
 var _db = require("../../db");
+
+var jwt = _interopRequireWildcard(require("jsonwebtoken"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -147,9 +155,7 @@ function _addUser() {
 
 function removeUser(_x13, _x14, _x15) {
   return _removeUser.apply(this, arguments);
-} // async function login(root,args,context) {
-// }
-
+}
 
 function _removeUser() {
   _removeUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(root, args, context) {
@@ -174,4 +180,58 @@ function _removeUser() {
     }, _callee5);
   }));
   return _removeUser.apply(this, arguments);
+}
+
+function login(_x16, _x17, _x18) {
+  return _login.apply(this, arguments);
+} // async function login(root,args,context) {
+// }
+
+
+function _login() {
+  _login = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(root, _ref, context) {
+    var email, password, user;
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            email = _ref.email, password = _ref.password;
+            _context6.prev = 1;
+            _context6.next = 4;
+            return _db.User.findOne({
+              where: {
+                email: email
+              }
+            });
+
+          case 4:
+            user = _context6.sent;
+
+            if (user) {
+              _context6.next = 7;
+              break;
+            }
+
+            return _context6.abrupt("return", "No such user with email ".concat(email));
+
+          case 7:
+            if (!user.correctPassword(password)) {
+              console.log("loggedIN");
+            }
+
+            _context6.next = 12;
+            break;
+
+          case 10:
+            _context6.prev = 10;
+            _context6.t0 = _context6["catch"](1);
+
+          case 12:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[1, 10]]);
+  }));
+  return _login.apply(this, arguments);
 }

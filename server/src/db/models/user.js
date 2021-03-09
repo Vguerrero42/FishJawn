@@ -1,4 +1,4 @@
-import * as crypto from 'crypto' 
+import * as bcrypt from 'bcrypt' 
 import { DataTypes } from 'sequelize'
 import db from '../db'
 
@@ -56,15 +56,11 @@ User.prototype.correctPassword = function(candidatePwd) {
  * classMethods
  */
 User.generateSalt = function() {
-  return crypto.randomBytes(16).toString('base64')
+  return bcrypt.genSaltSync()
 }
 
 User.encryptPassword = function(plainText, salt) {
-  return crypto
-    .createHash('RSA-SHA256')
-    .update(plainText)
-    .update(salt)
-    .digest('hex')
+ return bcrypt.hashSync(plainText,salt)
 }
 /**
  * hooks

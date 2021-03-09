@@ -4,12 +4,6 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 
 require("core-js/modules/es.array.for-each.js");
 
-require("core-js/modules/es.date.to-string.js");
-
-require("core-js/modules/es.object.to-string.js");
-
-require("core-js/modules/es.regexp.to-string.js");
-
 require("core-js/modules/web.dom-collections.for-each.js");
 
 Object.defineProperty(exports, "__esModule", {
@@ -17,7 +11,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports["default"] = void 0;
 
-var crypto = _interopRequireWildcard(require("crypto"));
+var bcrypt = _interopRequireWildcard(require("bcrypt"));
 
 var _sequelize = require("sequelize");
 
@@ -91,11 +85,11 @@ User.prototype.correctPassword = function (candidatePwd) {
 
 
 User.generateSalt = function () {
-  return crypto.randomBytes(16).toString('base64');
+  return bcrypt.genSaltSync();
 };
 
 User.encryptPassword = function (plainText, salt) {
-  return crypto.createHash('RSA-SHA256').update(plainText).update(salt).digest('hex');
+  return bcrypt.hashSync(plainText, salt);
 };
 /**
  * hooks

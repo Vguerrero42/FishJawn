@@ -1,4 +1,5 @@
 import { Fish,User } from "../../db"
+import * as jwt from 'jsonwebtoken'
 
 async function addFish(root, args, context) {
   let { name,description } = args
@@ -40,16 +41,16 @@ async function removeUser(root, args, context) {
   return `This user was removed: ${user}`
 }
 
-async function login(root,args,context) {
+async function login(root,{email,password},context) {
   try {
     const user = await  User.findOne({where:{
-      email: args.email
+      email: email
     }})
     if(!user){
-      return `No such user with email ${args.email}`
+      return `No such user with email ${email}`
     }
-    if(!user.correctPassword(args.password)){
-
+    if(!user.correctPassword(password)){
+      console.log("loggedIN")
     }
 
   } catch (error) {

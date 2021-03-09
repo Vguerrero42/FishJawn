@@ -16,7 +16,14 @@ var app = (0, _express["default"])();
 var schema = new _apolloServerExpress.ApolloServer({
   cors: true,
   typeDefs: _schema.typeDefs,
-  resolvers: _schema.resolvers
+  resolvers: _schema.resolvers,
+  context: function context(_ref) {
+    var req = _ref.req;
+    var auth = req.headers.authorization || '';
+    return {
+      auth: auth
+    };
+  }
 });
 var PORT = 3000;
 schema.applyMiddleware({
