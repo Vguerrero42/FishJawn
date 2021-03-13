@@ -124,37 +124,48 @@ function addUser(_x10, _x11, _x12) {
 
 function _addUser() {
   _addUser = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(root, _ref, context) {
-    var userName, email, password, newUser;
+    var userName, email, password, newUser, id, token;
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             userName = _ref.userName, email = _ref.email, password = _ref.password;
-            console.log('usercreate');
-            _context4.prev = 2;
-            _context4.next = 5;
+            _context4.prev = 1;
+            _context4.next = 4;
             return _db.User.create({
               userName: userName,
               email: email,
               password: password
             });
 
-          case 5:
+          case 4:
             newUser = _context4.sent;
-            console.log('end of func');
-            return _context4.abrupt("return", newUser);
+            id = newUser.dataValues.id;
+            console.log(newUser);
+            token = _jsonwebtoken["default"].sign({
+              id: id,
+              email: email
+            }, JWT_SECRET);
+            context.user = newUser;
+            return _context4.abrupt("return", {
+              token: token,
+              user: {
+                id: id,
+                email: email
+              }
+            });
 
-          case 10:
-            _context4.prev = 10;
-            _context4.t0 = _context4["catch"](2);
+          case 12:
+            _context4.prev = 12;
+            _context4.t0 = _context4["catch"](1);
             throw new Error(_context4.t0);
 
-          case 13:
+          case 15:
           case "end":
             return _context4.stop();
         }
       }
-    }, _callee4, null, [[2, 10]]);
+    }, _callee4, null, [[1, 12]]);
   }));
   return _addUser.apply(this, arguments);
 }
@@ -202,34 +213,35 @@ function _login() {
         switch (_context6.prev = _context6.next) {
           case 0:
             email = _ref3.email, password = _ref3.password;
-            _context6.prev = 1;
-            _context6.next = 4;
+            debugger;
+            _context6.prev = 2;
+            _context6.next = 5;
             return _db.User.findOne({
               where: {
                 email: email
               }
             });
 
-          case 4:
+          case 5:
             user = _context6.sent;
 
             if (user) {
-              _context6.next = 7;
+              _context6.next = 8;
               break;
             }
 
             return _context6.abrupt("return", "No such user with email ".concat(email));
 
-          case 7:
+          case 8:
             if (user.correctPassword(password)) {
               _context6.next = 10;
               break;
             }
 
-            console.log("Wrong Password");
             throw new Error('Incorrect Password');
 
           case 10:
+            console.log(user);
             token = _jsonwebtoken["default"].sign({
               id: user.id,
               email: user.email
@@ -239,16 +251,17 @@ function _login() {
               user: user
             });
 
-          case 14:
-            _context6.prev = 14;
-            _context6.t0 = _context6["catch"](1);
+          case 15:
+            _context6.prev = 15;
+            _context6.t0 = _context6["catch"](2);
+            console.log(_context6.t0);
 
-          case 16:
+          case 18:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[1, 14]]);
+    }, _callee6, null, [[2, 15]]);
   }));
   return _login.apply(this, arguments);
 }

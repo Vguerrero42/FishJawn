@@ -12,19 +12,20 @@ var _apolloServerExpress = require("apollo-server-express");
 
 var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
+var _config = require("./config");
+
 var _schema = require("./graphql/schema");
 
 var _db = require("./db");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var JWT_SECRET = process.env.JWT_SECRET;
 var app = (0, _express["default"])();
 
 var getUser = function getUser(token) {
   try {
     if (token) {
-      return _jsonwebtoken["default"].verify(token, JWT_SECRET);
+      return _jsonwebtoken["default"].verify(token, _config.JWT_SECRET);
     }
 
     return null;

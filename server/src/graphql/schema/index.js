@@ -21,7 +21,7 @@ type Mutation {
   removeFish(id: ID!): String!
   updateFish(id: ID!, name: String!): String!
   login(email:String!,password:String!):AuthPayload!
-  addUser(userName:String!,email:String!,password:String!):User!
+  addUser(userName:String!,email:String!,password:String!):AuthPayload!
   removeUser(id:ID!):String!
 }
 `

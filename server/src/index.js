@@ -3,11 +3,9 @@ import express from 'express'
 import { ApolloServer } from 'apollo-server-express'
 import jwt from 'jsonwebtoken'
 
+import {JWT_SECRET} from './config'
 import { typeDefs, resolvers } from "./graphql/schema"
-
 import { db } from './db'
-
-const JWT_SECRET = process.env.JWT_SECRET
 
 const app = express()
 

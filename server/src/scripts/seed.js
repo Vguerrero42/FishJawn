@@ -1,16 +1,13 @@
 import { Fish,User } from '../db/'
 import { db } from '../db'
 import users from './userSeed'
-
-require('../../../secrets')
-
-const fs = require('fs')
-console.log(users)
+import fs from 'fs'
+import {FISH_DATA_PATH} from '../config'
 
 let fishes = []
-let dataPath = process.env.FISH_DATA_PATH
 
-let fishObj = JSON.parse(fs.readFileSync(`${dataPath}/fishData.txt`, 'utf8'))
+
+let fishObj = JSON.parse(fs.readFileSync(`${FISH_DATA_PATH}/fishData.txt`, 'utf8'))
 
 
 for (let fish in fishObj) {

@@ -6,18 +6,27 @@ import {gql,useLazyQuery,useMutation} from '@apollo/client'
 
 
 const ADD_NEW_USER = gql`
-  mutation addUser($userName:String!,$email:String!,$password:String!) {
+  mutation AddUser($userName:String!,$email:String!,$password:String!) {
     addUser(userName:$userName,email:$email,
     password:$password){
-      userName
-      email
+      token
+      user{
+        id
+        email
+        password
+      }
     }
   }
 `
 const LOGIN = gql`
   mutation login($email:String!,$password:String!){
     login(email:$email,password:$password){
-      AuthPayload
+      token
+      user{
+        id
+        email
+        password
+      }
     }
   }
 `
@@ -30,17 +39,25 @@ const LandingPage = ({navigation}) =>{
   const [login,{called,loading,error,data}] = useMutation(LOGIN)
 
   if(loading) return 'Loading'
-
-  const handleLogin = async () => {
+  if(called && error) console.log(error)
+  if(data) {
+    console.log('data after',data)
+    navigation.navigate("Home")
+  }
+  const handleAddUser = () => {
     const email = `${userName}@ggmail.com`
-    const {data} = await login({variables:{userName,email,password}})
+    addUser({variables:{userName,email,password}})
     onUserTextChange('')
     onPassTextChange('')
-    if(!data.token) console.log(token) 
-    else {
-    console.log(data)
-    navigation.navigate('Home')
-    }
+    console.log('data in handle',data)
+  }
+  const handleLogin = () => {
+    const email = `${userName}@ggmail.com`
+    console.log(userName,email,password)
+    login({variables:{email,password}})
+    onUserTextChange('')
+    onPassTextChange('')
+    console.log('data in handle',data)
   }
   return(
     <View style = {styles.landingContainer}>
@@ -58,7 +75,10 @@ const LandingPage = ({navigation}) =>{
           onChangeText={text => onPassTextChange(text)}
           value ={password}>
         </TextInput>
+        <View style={localStyle.buttonContainer} >
         <Button color='#81B29A' title="login" onPress={handleLogin}/>
+        {/* <Button color='#81B29A' title="register" onPress={handleAddUser}/> */}
+        </View>
         </View>
         <View style={localStyle.linkContainer}>
           <Text style={localStyle.textButton} onPress={()=>console.log('Register Press')}>Register</Text>
@@ -105,6 +125,11 @@ const localStyle = StyleSheet.create({
     borderRadius:20,
   },
   text:{
+  },
+  buttonContainer:{
+    flexDirection:'row',
+    justifyContent:'space-between',
+    width:'80%'
   }
 })
 

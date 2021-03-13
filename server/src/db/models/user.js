@@ -49,18 +49,22 @@ export default User
  * instanceMethods
  */
 User.prototype.correctPassword = function(candidatePwd) {
-  return bcrypt.compareSync(candidatePwd,this.password)
+  console.log(candidatePwd,this.password)
+  return bcrypt.compareSync(candidatePwd,this.password())
 }
 
 /**
  * classMethods
  */
 User.generateSalt = function() {
+
   return bcrypt.genSaltSync()
 }
 
 User.encryptPassword = function(plainText, salt) {
+
  return bcrypt.hashSync(plainText,salt)
+
 }
 /**
  * hooks

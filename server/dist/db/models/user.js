@@ -71,7 +71,8 @@ var _default = User;
 exports["default"] = _default;
 
 User.prototype.correctPassword = function (candidatePwd) {
-  return _bcrypt["default"].compareSync(candidatePwd, this.password);
+  console.log(candidatePwd, this.password);
+  return _bcrypt["default"].compareSync(candidatePwd, this.password());
 };
 /**
  * classMethods

@@ -26,15 +26,20 @@ async function updateFish(root, args, context) {
 }
 
 async function addUser(root, { userName,email,password }, context) {
-  console.log('usercreate')
   try {
     const newUser = await User.create({
       userName,
       email,
       password
     })
-    console.log('end of func')
-    return newUser
+    const {id} = newUser.dataValues
+    console.log(newUser)
+    const token = jwt.sign(
+      {id:id,email:email},JWT_SECRET
+      )
+    context.user = newUser
+    return {token,user:{id,email}}
+
   } catch (error) {
     throw new Error(error)
   }
@@ -47,23 +52,24 @@ async function removeUser(root, {id}, context) {
 }
 
 async function login(root,{email,password},context) {
+  debugger;
   try {
-    const user = await  User.findOne({where:{
+    const user = await User.findOne({where:{
       email: email
     }})
     if(!user){
       return `No such user with email ${email}`
     }
     if(!user.correctPassword(password)){
-      console.log("Wrong Password")
       throw new Error('Incorrect Password')
     }
+    console.log(user)
     const token = jwt.sign(
       {id:user.id,email:user.email},JWT_SECRET
       )
       return {token,user}
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
