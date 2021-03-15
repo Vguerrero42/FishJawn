@@ -131,17 +131,17 @@ function _addUser() {
           case 0:
             userName = _ref.userName, email = _ref.email, password = _ref.password;
             _context4.prev = 1;
-            _context4.next = 4;
+            console.log(context);
+            _context4.next = 5;
             return _db.User.create({
               userName: userName,
               email: email,
               password: password
             });
 
-          case 4:
+          case 5:
             newUser = _context4.sent;
             id = newUser.dataValues.id;
-            console.log(newUser);
             token = _jsonwebtoken["default"].sign({
               id: id,
               email: email
@@ -213,55 +213,50 @@ function _login() {
         switch (_context6.prev = _context6.next) {
           case 0:
             email = _ref3.email, password = _ref3.password;
-            debugger;
-            _context6.prev = 2;
-            _context6.next = 5;
+            console.log('context in login before', context);
+            _context6.next = 4;
             return _db.User.findOne({
               where: {
                 email: email
               }
             });
 
-          case 5:
+          case 4:
             user = _context6.sent;
 
             if (user) {
-              _context6.next = 8;
+              _context6.next = 7;
               break;
             }
 
-            return _context6.abrupt("return", "No such user with email ".concat(email));
+            throw new Error("No User with email ".concat(email));
 
-          case 8:
+          case 7:
             if (user.correctPassword(password)) {
-              _context6.next = 10;
+              _context6.next = 9;
               break;
             }
 
             throw new Error('Incorrect Password');
 
-          case 10:
-            console.log(user);
+          case 9:
             token = _jsonwebtoken["default"].sign({
               id: user.id,
               email: user.email
             }, JWT_SECRET);
+            context.user = user;
+            console.log('context after success', context);
             return _context6.abrupt("return", {
               token: token,
               user: user
             });
 
-          case 15:
-            _context6.prev = 15;
-            _context6.t0 = _context6["catch"](2);
-            console.log(_context6.t0);
-
-          case 18:
+          case 13:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[2, 15]]);
+    }, _callee6);
   }));
   return _login.apply(this, arguments);
 }

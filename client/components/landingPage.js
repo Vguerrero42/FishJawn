@@ -31,7 +31,8 @@ const LOGIN = gql`
   }
 `
 
-const LandingPage = ({navigation}) =>{
+const LandingPage = (args) =>{
+  console.log(args)
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
@@ -41,6 +42,9 @@ const LandingPage = ({navigation}) =>{
   if(loading) return 'Loading'
   if(called && error) console.log(error)
   if(data) {
+    if(!data.login){
+      alert('Please check credentials')
+    }
     console.log('data after',data)
     navigation.navigate("Home")
   }

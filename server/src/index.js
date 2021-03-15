@@ -19,7 +19,7 @@ const getUser = token =>{
     return null
   }
 }
-const schema = new ApolloServer({
+const server = new ApolloServer({
   cors:true,
   typeDefs,
   resolvers,
@@ -34,7 +34,7 @@ const schema = new ApolloServer({
 
 const PORT = 3000
 
-schema.applyMiddleware({
+server.applyMiddleware({
   app,
   path: '/graphql'
 })

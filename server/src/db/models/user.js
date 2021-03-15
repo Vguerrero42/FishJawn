@@ -49,7 +49,6 @@ export default User
  * instanceMethods
  */
 User.prototype.correctPassword = function(candidatePwd) {
-  console.log(candidatePwd,this.password)
   return bcrypt.compareSync(candidatePwd,this.password())
 }
 

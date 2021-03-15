@@ -1,5 +1,7 @@
 import {StyleSheet,Platform,StatusBar} from 'react-native'
 
+const white = '#FFFFFF'
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -29,7 +31,7 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'blue'
+    backgroundColor: white
   },
   footer: {
     flex: .5,

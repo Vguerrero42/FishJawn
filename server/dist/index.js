@@ -34,7 +34,7 @@ var getUser = function getUser(token) {
   }
 };
 
-var schema = new _apolloServerExpress.ApolloServer({
+var server = new _apolloServerExpress.ApolloServer({
   cors: true,
   typeDefs: _schema.typeDefs,
   resolvers: _schema.resolvers,
@@ -42,13 +42,14 @@ var schema = new _apolloServerExpress.ApolloServer({
     var req = _ref.req;
     var token = req.headers.authorization || '';
     var user = getUser(token.replace('Bearer', ''));
+    console.log('context', req.headers);
     return {
       user: user
     };
   }
 });
 var PORT = 3000;
-schema.applyMiddleware({
+server.applyMiddleware({
   app: app,
   path: '/graphql'
 });

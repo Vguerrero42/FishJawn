@@ -8,19 +8,17 @@ import {Home,LandingPage} from './components';
 
 const Stack = createStackNavigator()
 
-const cache = new InMemoryCache()
-
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000/graphql',
-  cache
+  cache: new InMemoryCache()
 });
 
 export default function App() {
   return (
     <ApolloProvider client={client}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Landing'>
+        <Stack.Navigator initialRouteName={'LandingPage'}>
           <Stack.Screen
             name='Landing'
             component={LandingPage}
