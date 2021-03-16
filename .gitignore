@@ -14,5 +14,6 @@ userSeed.js
 seed.js
 .env
 config.js
+secret.js
 # macOS
 .DS_Store

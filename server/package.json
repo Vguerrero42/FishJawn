@@ -7,7 +7,7 @@
     "start": "nodemon  dist/index.js",
     "start-dev": "NODE_ENV='development' && npm run start",
     "build": "babel src/index.js src -d dist",
-    "build-dev":"npm run build && npm run start-dev",
+    "build-dev": "npm run build && npm run start-dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "seed": "node dist/scripts/seed.js"
   },

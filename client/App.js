@@ -6,11 +6,14 @@ import {AppLoading} from 'expo'
 
 import {Home,LandingPage} from './components';
 
+import MetroUri from './secret'
+
 const Stack = createStackNavigator()
 
+ const localUri = 'http://localhost:3000/graphql' 
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3000/graphql',
+  uri: MetroUri,
   cache: new InMemoryCache()
 });
 

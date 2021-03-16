@@ -5,6 +5,8 @@ import styles from '../style'
 import {useState} from '@react-native-community/hooks'
 import { gql, useQuery } from '@apollo/client'
 
+import Map from './map'
+
 const Home = () => {
   const handleMapTouch = () =>{
     Alert.alert("Map Button Touched","You've done it now")
@@ -21,7 +23,7 @@ const Home = () => {
       </View>
       <TouchableOpacity style={styles.mapBox}
         onPress={handleMapTouch}>
-        <Text style={styles.text}>MAP GOES HERE</Text>
+        <Map />
       </TouchableOpacity>
       <View style={styles.footer}>
         <Text style={styles.text} >Footer</Text>

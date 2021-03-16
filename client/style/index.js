@@ -11,21 +11,6 @@ const styles = StyleSheet.create({
     margin:10,
     paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
-  landingContainer:{
-    flex:1,
-    justifyContent:'center',
-    backgroundColor:'#000F08'
-  },
-  landingPage:{
-    borderRadius:50,
-    backgroundColor:'#F4FAFF',
-    alignItems:'center',
-    justifyContent:'center',
-    alignSelf:'center',
-    width:'70%',
-    height:'40%' ,
-    borderWidth:1,
-  },
   header: {
     flex: .5,
     alignSelf: 'stretch',

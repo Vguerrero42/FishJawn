@@ -201,9 +201,7 @@ function _removeUser() {
 
 function login(_x16, _x17, _x18) {
   return _login.apply(this, arguments);
-} // async function login(root,args,context) {
-// }
-
+}
 
 function _login() {
   _login = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(root, _ref3, context) {

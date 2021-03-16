@@ -42,7 +42,6 @@ var server = new _apolloServerExpress.ApolloServer({
     var req = _ref.req;
     var token = req.headers.authorization || '';
     var user = getUser(token.replace('Bearer', ''));
-    console.log('context', req.headers);
     return {
       user: user
     };

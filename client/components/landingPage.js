@@ -31,30 +31,29 @@ const LOGIN = gql`
   }
 `
 
-const LandingPage = (args) =>{
-  console.log(args)
+const LandingPage = ({navigation}) =>{
   const[userName,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
   // const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
   const [login,{called,loading,error,data}] = useMutation(LOGIN)
 
-  if(loading) return 'Loading'
-  if(called && error) console.log(error)
+  if(loading) return (
+    <Text style={styles.text}>Loading...</Text>
+  )
   if(data) {
-    if(!data.login){
-      alert('Please check credentials')
-    }
+    if(data.login){
     console.log('data after',data)
     navigation.navigate("Home")
+    }
   }
-  const handleAddUser = () => {
-    const email = `${userName}@ggmail.com`
-    addUser({variables:{userName,email,password}})
-    onUserTextChange('')
-    onPassTextChange('')
-    console.log('data in handle',data)
-  }
+  // const handleAddUser = () => {
+  //   const email = `${userName}@ggmail.com`
+  //   addUser({variables:{userName,email,password}})
+  //   onUserTextChange('')
+  //   onPassTextChange('')
+  //   console.log('data in handle',data)
+  // }
   const handleLogin = () => {
     const email = `${userName}@ggmail.com`
     console.log(userName,email,password)
@@ -64,8 +63,8 @@ const LandingPage = (args) =>{
     console.log('data in handle',data)
   }
   return(
-    <View style = {styles.landingContainer}>
-      <View style={styles.landingPage} >
+    <View style = {localStyle.landingContainer}>
+      <View style={localStyle.landingPage} >
         <View style={localStyle.loginContainer} >
         <Text style={localStyle.text}>Enter Username</Text>
         <TextInput  
@@ -81,7 +80,6 @@ const LandingPage = (args) =>{
         </TextInput>
         <View style={localStyle.buttonContainer} >
         <Button color='#81B29A' title="login" onPress={handleLogin}/>
-        {/* <Button color='#81B29A' title="register" onPress={handleAddUser}/> */}
         </View>
         </View>
         <View style={localStyle.linkContainer}>
@@ -95,24 +93,38 @@ const LandingPage = (args) =>{
 }
 
 const localStyle = StyleSheet.create({
+  landingContainer:{
+    flex:1,
+    justifyContent:'center',
+    backgroundColor:'white'
+  },
+  landingPage:{
+    borderRadius:50,
+    backgroundColor:'white',
+    alignItems:'center',
+    justifyContent:'center',
+    alignSelf:'center',
+    width:'60%',
+    height:'40%' ,
+    borderWidth:1,
+  },
   loginContainer:{
     alignContent:'center',
     justifyContent:'space-evenly',
     alignItems:'center',
     flexDirection:'column',
     borderWidth:2,
-    height:200
+    height:"60%"
   },
   linkContainer:{
+    right:5,
+    flex:.5,
     alignSelf:'flex-end',
-    bottom:-70,
-    width:'40%',
-    height:60,
     flexDirection:'column',
     alignItems:'flex-start',
     alignContent:'center',
     justifyContent:'space-evenly',
-    borderWidth:2
+    borderWidth:0
   },
   textButton:{
     flex:1,
@@ -133,7 +145,8 @@ const localStyle = StyleSheet.create({
   buttonContainer:{
     flexDirection:'row',
     justifyContent:'space-between',
-    width:'80%'
+    width:'80%',
+    borderWidth:0
   }
 })
 
