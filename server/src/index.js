@@ -25,6 +25,7 @@ const server = new ApolloServer({
   resolvers,
   context:({req}) => {
     const token = req.headers.authorization || ''
+    console.log('tokenINServer',req.headers.authorization)
     const user = getUser(token.replace('Bearer',''))
     return {
       user

@@ -1,14 +1,26 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import styles from '../style'
 import {useState} from '@react-native-community/hooks'
 import { gql, useQuery } from '@apollo/client'
 
-import {Map,Header} from './'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
+import {MiniMap,Header} from './'
 
 
-const Home = () => {
+export default function Home () {
+
+  useEffect( () =>{
+    const getUser = async() =>{
+      const user = await AsyncStorage.getItem('UserId')
+
+      console.log('gotUserID',JSON.parse(user))
+    }
+    getUser()
+  })
+ 
   const handleMapTouch = () =>{
     Alert.alert("Map Button Touched","You've done it now")
   }
@@ -25,7 +37,8 @@ const Home = () => {
       </View>
       <TouchableOpacity style={styles.mapBox}
         onPress={handleMapTouch}>
-        <Map />
+        <MiniMap />
+        <Text>+</Text>
       </TouchableOpacity>
       <View style={styles.footer}>
         <Text style={styles.text} >Footer</Text>
@@ -35,5 +48,3 @@ const Home = () => {
   )
 }
 
-
-export default Home

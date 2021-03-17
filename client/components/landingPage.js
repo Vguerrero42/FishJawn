@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet,Dimensions} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
 import {gql,useLazyQuery,useMutation} from '@apollo/client'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Header from "./header"
 
@@ -18,14 +19,16 @@ const LOGIN = gql`
   }
 `
 
-const LandingPage = ({navigation}) =>{
+export default function LandingPage ({navigation}) {
   const[email,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
-  const [login,{called,loading,error,data}] = useMutation(LOGIN,{
-    onCompleted: data =>{
-      if(data.login){
-        console.log('data after',data)
+  const [login,{loading,called,error}] = useMutation(LOGIN,{
+    onCompleted: async ({login}) =>{
+      if(login){
+        await AsyncStorage.setItem('token', JSON.stringify(login.token))
+        await AsyncStorage.setItem('UserId', JSON.stringify(login.user.id))
+        console.log('data after',login)
         navigation.navigate("Home")
       }
     }
@@ -43,7 +46,7 @@ const LandingPage = ({navigation}) =>{
     login({variables:{email,password}})
     onUserTextChange('')
     onPassTextChange('')
-    console.log('data in handle',data)
+    // console.log('data in handle',data)
   }
   return(
     <View style = {styles.landingContainer}>
@@ -134,5 +137,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default LandingPage
 

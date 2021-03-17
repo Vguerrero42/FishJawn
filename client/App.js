@@ -3,6 +3,7 @@ import {ApolloClient,ApolloProvider,InMemoryCache} from '@apollo/client'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {AppLoading} from 'expo'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import {Home,LandingPage,SignUp} from './components';
 
@@ -14,8 +15,12 @@ const Stack = createStackNavigator()
 
 const client = new ApolloClient({
   uri: MetroUri,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
+  headers:{
+    authorization:AsyncStorage.getItem('token') || ''
+  }
 });
+
 
 export default function App() {
   return (
@@ -32,7 +37,11 @@ export default function App() {
           />
           <Stack.Screen 
             name='SignUp'
-            component={Home}
+            component={SignUp}
+          />
+           <Stack.Screen 
+            name='Map'
+            component={Map}
           />
         </Stack.Navigator>
       </NavigationContainer>

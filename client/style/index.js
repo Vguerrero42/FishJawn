@@ -45,9 +45,8 @@ const styles = StyleSheet.create({
     borderColor:'green',
     flex: 1,
     margin:10,
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
+    alignItems: 'center' 
+   },
   text: {
     fontSize: 20,
     borderWidth: 2,
