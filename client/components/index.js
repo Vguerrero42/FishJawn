@@ -1,5 +1,8 @@
 import Home from './home'
 import LandingPage from './landingPage'
+import SingUp from './signUp'
+import Map from './map'
+import Header from './header'
 
 
 
@@ -24,5 +27,8 @@ import LandingPage from './landingPage'
 
 export {
   Home,
-  LandingPage
+  LandingPage,
+  Map,
+  SingUp,
+  Header
 }

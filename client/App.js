@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
 import {AppLoading} from 'expo'
 
-import {Home,LandingPage} from './components';
+import {Home,LandingPage,SignUp} from './components';
 
 import MetroUri from './secret'
 
@@ -28,6 +28,10 @@ export default function App() {
           />
           <Stack.Screen 
             name='Home'
+            component={Home}
+          />
+          <Stack.Screen 
+            name='SignUp'
             component={Home}
           />
         </Stack.Navigator>

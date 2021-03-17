@@ -5,7 +5,8 @@ import styles from '../style'
 import {useState} from '@react-native-community/hooks'
 import { gql, useQuery } from '@apollo/client'
 
-import Map from './map'
+import {Map,Header} from './'
+
 
 const Home = () => {
   const handleMapTouch = () =>{
@@ -14,9 +15,10 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.innerHeader}>
+        {/* <View style={styles.innerHeader}>
           <Text style={styles.text}>HEADER</Text>
-        </View>
+        </View> */}
+        <Header />
       </View>
       <View style={styles.recentCatches}>
         <Text style={styles.text}>Your Recent Catches</Text>

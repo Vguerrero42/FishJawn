@@ -1,23 +1,10 @@
 import React,{useState} from 'react'
-import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet} from 'react-native'
+import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet,Dimensions} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
-import styles from '../style'
 import {gql,useLazyQuery,useMutation} from '@apollo/client'
 
+import Header from "./header"
 
-const ADD_NEW_USER = gql`
-  mutation AddUser($userName:String!,$email:String!,$password:String!) {
-    addUser(userName:$userName,email:$email,
-    password:$password){
-      token
-      user{
-        id
-        email
-        password
-      }
-    }
-  }
-`
 const LOGIN = gql`
   mutation login($email:String!,$password:String!){
     login(email:$email,password:$password){
@@ -32,93 +19,91 @@ const LOGIN = gql`
 `
 
 const LandingPage = ({navigation}) =>{
-  const[userName,onUserTextChange] = useState('')
+  const[email,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
-  // const [addUser,{called,loading,error,data}] = useMutation(ADD_NEW_USER)
-  const [login,{called,loading,error,data}] = useMutation(LOGIN)
+  const [login,{called,loading,error,data}] = useMutation(LOGIN,{
+    onCompleted: data =>{
+      if(data.login){
+        console.log('data after',data)
+        navigation.navigate("Home")
+      }
+    }
+  })
 
   if(loading) return (
     <Text style={styles.text}>Loading...</Text>
   )
-  if(data) {
-    if(data.login){
-    console.log('data after',data)
-    navigation.navigate("Home")
-    }
+ 
+  const goToSignUp = () =>{
+    navigation.navigate('SignUp')
   }
-  // const handleAddUser = () => {
-  //   const email = `${userName}@ggmail.com`
-  //   addUser({variables:{userName,email,password}})
-  //   onUserTextChange('')
-  //   onPassTextChange('')
-  //   console.log('data in handle',data)
-  // }
   const handleLogin = () => {
-    const email = `${userName}@ggmail.com`
-    console.log(userName,email,password)
+    console.log(email,password)
     login({variables:{email,password}})
     onUserTextChange('')
     onPassTextChange('')
     console.log('data in handle',data)
   }
   return(
-    <View style = {localStyle.landingContainer}>
-      <View style={localStyle.landingPage} >
-        <View style={localStyle.loginContainer} >
-        <Text style={localStyle.text}>Enter Username</Text>
-        <TextInput  
-          style={localStyle.inputBox}
-          onChangeText={text => onUserTextChange(text)}
-          value ={userName}>
-        </TextInput>
-        <Text style={localStyle.text} >Enter Password</Text>
-        <TextInput  
-          style={localStyle.inputBox}
-          onChangeText={text => onPassTextChange(text)}
-          value ={password}>
-        </TextInput>
-        <View style={localStyle.buttonContainer} >
+    <View style = {styles.landingContainer}>
+      <View style={styles.landingPage} >
+        <View style={styles.loginContainer} >
+          <Text style={styles.text}>Enter Email</Text>
+          <TextInput  
+            style={styles.inputBox}
+            onChangeText={text => onUserTextChange(text)}
+            value ={email}>
+          </TextInput>
+          <Text style={styles.text} >Enter Password</Text>
+          <TextInput  
+            style={styles.inputBox}
+            onChangeText={text => onPassTextChange(text)}
+            value ={password}>
+          </TextInput>
+        <View style={styles.buttonContainer} >
         <Button color='#81B29A' title="login" onPress={handleLogin}/>
         </View>
-        </View>
-        <View style={localStyle.linkContainer}>
-          <Text style={localStyle.textButton} onPress={()=>console.log('Register Press')}>Register</Text>
-          <Text style={localStyle.textButton} onPress={()=>console.log('Forgot Password Press')}>Forgot Password?</Text>
-          </View>
       </View>
+        <View style={styles.linkContainer}>
+          <Text style={styles.textButton} onPress={()=> goToSignUp()}>Register</Text>
+          <Text style={styles.textButton} onPress={()=>console.log('Forgot Password Press')}>Forgot Password?</Text>
+          </View>
+        </View>
       <StatusBar style='auto'/>
     </View>
   )
 }
 
-const localStyle = StyleSheet.create({
+const styles = StyleSheet.create({
   landingContainer:{
     flex:1,
+    flexDirection:'column',
     justifyContent:'center',
     backgroundColor:'white'
   },
   landingPage:{
     borderRadius:50,
+    flexDirection:'column',
     backgroundColor:'white',
     alignItems:'center',
     justifyContent:'center',
     alignSelf:'center',
-    width:'60%',
-    height:'40%' ,
+    width: 300,
+    height:300 ,
     borderWidth:1,
+    padding:10
   },
   loginContainer:{
     alignContent:'center',
     justifyContent:'space-evenly',
     alignItems:'center',
     flexDirection:'column',
-    borderWidth:2,
-    height:"60%"
+    borderWidth:0,
+    height:200,
+    borderWidth:0
   },
   linkContainer:{
-    right:5,
-    flex:.5,
     alignSelf:'flex-end',
     flexDirection:'column',
     alignItems:'flex-start',
@@ -127,7 +112,6 @@ const localStyle = StyleSheet.create({
     borderWidth:0
   },
   textButton:{
-    flex:1,
     fontSize:15,
     color:'blue',
     margin:0,
@@ -144,8 +128,7 @@ const localStyle = StyleSheet.create({
   },
   buttonContainer:{
     flexDirection:'row',
-    justifyContent:'space-between',
-    width:'80%',
+    justifyContent:'center',
     borderWidth:0
   }
 })
