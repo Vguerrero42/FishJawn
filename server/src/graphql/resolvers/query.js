@@ -8,10 +8,10 @@ async function getAllFishes(root, args, context) {
     return allFishes
     }
     else{
-      return 'No Fish here mane'
+      throw new Error("No Fish Fetched Feller")
     }
   } catch (error) {
-    return "Not yet"
+    throw new Error(error)
   }
 }
 
@@ -27,7 +27,7 @@ async function getFish(root, args, context) {
       return `Fish with id ${id} does not exist,dude.`
     }
   } catch (error) {
-    return `${error}`
+    throw new Error(error)
   }
 }
 
@@ -46,7 +46,7 @@ async function getAllUsers(root,args,context){
       return  'None users bro :/'
     }
   } catch (error) {
-      return `${error}`
+      throw new Error(error)
   }
 }
 
@@ -63,14 +63,19 @@ async function getUser(root,args,context){
       'User Not Found'
     }
   } catch (error) {
-    return `${error}`
+    throw new Error(error)
   }
 }
 
 
 
 async function hello(root, args, context) {
-  return "Hello,how are you, i am under the water"
+  if(context.user)
+  {return "Hello,how are you, i am under the water"}
+  
+  else {
+    throw new Error("RuhROh")
+  }
 }
 
 export {

@@ -51,7 +51,7 @@ function _getAllFishes() {
             return _context.abrupt("return", allFishes);
 
           case 9:
-            return _context.abrupt("return", 'No Fish here mane');
+            throw new Error("No Fish Fetched Feller");
 
           case 10:
             _context.next = 15;
@@ -60,7 +60,7 @@ function _getAllFishes() {
           case 12:
             _context.prev = 12;
             _context.t0 = _context["catch"](0);
-            return _context.abrupt("return", "Not yet");
+            throw new Error(_context.t0);
 
           case 15:
           case "end":
@@ -109,7 +109,7 @@ function _getFish() {
           case 13:
             _context2.prev = 13;
             _context2.t0 = _context2["catch"](0);
-            return _context2.abrupt("return", "".concat(_context2.t0));
+            throw new Error(_context2.t0);
 
           case 16:
           case "end":
@@ -193,7 +193,7 @@ function _getAllUsers() {
           case 11:
             _context4.prev = 11;
             _context4.t0 = _context4["catch"](0);
-            return _context4.abrupt("return", "".concat(_context4.t0));
+            throw new Error(_context4.t0);
 
           case 14:
           case "end":
@@ -243,7 +243,7 @@ function _getUser() {
           case 14:
             _context5.prev = 14;
             _context5.t0 = _context5["catch"](0);
-            return _context5.abrupt("return", "".concat(_context5.t0));
+            throw new Error(_context5.t0);
 
           case 17:
           case "end":
@@ -265,9 +265,17 @@ function _hello() {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
+            if (!context.user) {
+              _context6.next = 4;
+              break;
+            }
+
             return _context6.abrupt("return", "Hello,how are you, i am under the water");
 
-          case 1:
+          case 4:
+            throw new Error("RuhROh");
+
+          case 5:
           case "end":
             return _context6.stop();
         }

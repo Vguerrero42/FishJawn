@@ -1,7 +1,7 @@
 import Home from './home'
 import LandingPage from './landingPage'
 import SignUp from './signUp'
-import MiniMap from './map'
+import MainMap from './map'
 import Header from './header'
 
 
@@ -28,7 +28,7 @@ import Header from './header'
 export {
   Home,
   LandingPage,
-  MiniMap,
+  MainMap,
   SignUp,
   Header
 }

@@ -1,6 +1,7 @@
-import { Fish,User } from '../db/'
+import { Fish,User,Location,Catch } from '../db/'
 import { db } from '../db'
 import users from './userSeed'
+import {locations,catches} from './catchSeed'
 import fs from 'fs'
 import {FISH_DATA_PATH} from '../config'
 
@@ -22,6 +23,8 @@ const seed = async () => {
   await db.sync()
   await Fish.bulkCreate(fishes)
   await User.bulkCreate(users)
+  await Location.bulkCreate(locations)
+  await Catch.bulkCreate(catches)
   await console.log('seed Success!')
   db.close()
 }

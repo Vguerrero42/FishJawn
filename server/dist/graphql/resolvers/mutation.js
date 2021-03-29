@@ -47,18 +47,23 @@ function _addFish() {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
+            if (!context.user) {
+              _context.next = 6;
+              break;
+            }
+
             name = args.name, description = args.description;
-            _context.next = 3;
+            _context.next = 4;
             return _db.Fish.create({
               name: name,
               description: description
             });
 
-          case 3:
+          case 4:
             newFish = _context.sent;
             return _context.abrupt("return", newFish);
 
-          case 5:
+          case 6:
           case "end":
             return _context.stop();
         }

@@ -3,6 +3,5 @@ export const typeDefs = `
        id: ID!
        userName: String
        email: String!
-       password:String
    }
 `

@@ -9,24 +9,26 @@ import { db } from './db'
 
 const app = express()
 
-const getUser = token =>{
+const getUser =  async (token) =>{
+  if(token){
   try {
-    if(token){
-      return jwt.verify(token,JWT_SECRET)
-    }
-    return null
+    console.log("Token in get User",token)
+    // console.log('verify',jwt.verify(token,JWT_SECRET))
+    return jwt.verify(token,JWT_SECRET)
   } catch (error) {
+    console.log("ERROR",error)
     return null
   }
+}
 }
 const server = new ApolloServer({
   cors:true,
   typeDefs,
   resolvers,
-  context:({req}) => {
+  context: async ({req}) => {
     const token = req.headers.authorization || ''
-    console.log('tokenINServer',req.headers.authorization)
-    const user = getUser(token.replace('Bearer',''))
+    const user = getUser(token)
+    console.log("USER IN SERVER",user)
     return {
       user
     }

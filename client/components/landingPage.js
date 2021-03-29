@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert,TextInput,StyleSheet,Dimensions} from 'react-native'
 import { StatusBar } from 'expo-status-bar';
-import {gql,useLazyQuery,useMutation} from '@apollo/client'
+import {gql,useLazyQuery,useMutation, useQuery} from '@apollo/client'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import Header from "./header"
@@ -13,13 +13,15 @@ const LOGIN = gql`
       user{
         id
         email
-        password
       }
     }
   }
 `
 
+
+
 export default function LandingPage ({navigation}) {
+
   const[email,onUserTextChange] = useState('')
   const[password,onPassTextChange] = useState('')
 
@@ -34,13 +36,15 @@ export default function LandingPage ({navigation}) {
     }
   })
 
-  if(loading) return (
+
+  if(loading || loading && called) return (
     <Text style={styles.text}>Loading...</Text>
   )
  
   const goToSignUp = () =>{
     navigation.navigate('SignUp')
   }
+  
   const handleLogin = () => {
     console.log(email,password)
     login({variables:{email,password}})

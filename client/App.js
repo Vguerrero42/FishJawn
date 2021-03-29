@@ -5,19 +5,32 @@ import {createStackNavigator} from '@react-navigation/stack'
 import {AppLoading} from 'expo'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 
-import {Home,LandingPage,SignUp} from './components';
+import {Home,LandingPage,SignUp,MainMap} from './components';
 
 import MetroUri from './secret'
+import { parse } from 'graphql';
 
 const Stack = createStackNavigator()
 
- const localUri = 'http://localhost:3000/graphql' 
+const localUri = 'http://localhost:3000/graphql' 
+
+const getToken = async () => {
+  const token = await AsyncStorage.getItem('token')
+  const parsed = JSON.parse(token)
+  console.log("parsed my boi",parsed)
+  
+  return parsed
+}
+
+const token = getToken().then((token) => token)
+
+console.log(token)
 
 const client = new ApolloClient({
   uri: MetroUri,
   cache: new InMemoryCache(),
   headers:{
-    authorization:AsyncStorage.getItem('token') || ''
+    authorization:token
   }
 });
 
@@ -41,7 +54,7 @@ export default function App() {
           />
            <Stack.Screen 
             name='Map'
-            component={Map}
+            component={MainMap}
           />
         </Stack.Navigator>
       </NavigationContainer>

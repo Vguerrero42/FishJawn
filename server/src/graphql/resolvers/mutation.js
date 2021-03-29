@@ -4,12 +4,14 @@ import jwt from 'jsonwebtoken'
 const JWT_SECRET = process.env.JWT_SECRET
 
 async function addFish(root, args, context) {
+  if(context.user){
   let { name,description } = args
   let newFish = await Fish.create({
     name: name,
     description:description
   })
   return newFish
+}
 }
 
 async function removeFish(root, args, context) {

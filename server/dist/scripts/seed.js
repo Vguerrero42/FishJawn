@@ -12,6 +12,8 @@ var _db2 = require("../db");
 
 var _userSeed = _interopRequireDefault(require("./userSeed"));
 
+var _catchSeed = require("./catchSeed");
+
 var _fs = _interopRequireDefault(require("fs"));
 
 var _config = require("../config");
@@ -51,12 +53,20 @@ var seed = /*#__PURE__*/function () {
 
           case 6:
             _context.next = 8;
-            return console.log('seed Success!');
+            return _db.Location.bulkCreate(_catchSeed.locations);
 
           case 8:
+            _context.next = 10;
+            return _db.Catch.bulkCreate(_catchSeed.catches);
+
+          case 10:
+            _context.next = 12;
+            return console.log('seed Success!');
+
+          case 12:
             _db2.db.close();
 
-          case 9:
+          case 13:
           case "end":
             return _context.stop();
         }

@@ -2,7 +2,7 @@ import React from 'react'
 import MapView from 'react-native-maps'
 import {StyleSheet,Text,View} from 'react-native'
 
-export default function MiniMap() {
+export default function MainMap() {
   // const initialLocation = {}
   //  navigator.geolocation.getCurrentPosition(({coords })=>{
   //    initialLocation.latitde = coords.latitude
