@@ -4,4 +4,4 @@ export const typeDefs = `
        userName: String
        email: String!
    }
-`
+`;

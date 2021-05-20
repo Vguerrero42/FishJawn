@@ -20,9 +20,15 @@ require("regenerator-runtime/runtime.js");
 
 var _db = require("../../db");
 
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var JWT_SECRET = process.env.JWT_SECRET;
 
 function getAllFishes(_x, _x2, _x3) {
   return _getAllFishes.apply(this, arguments);
@@ -139,16 +145,12 @@ function _me() {
               break;
             }
 
-            throw new Error('You are not authenticated');
+            throw new Error("You are not authenticated");
 
           case 3:
-            _context3.next = 5;
-            return _db.User.findByPk(user.id);
+            return _context3.abrupt("return", user);
 
-          case 5:
-            return _context3.abrupt("return", _context3.sent);
-
-          case 6:
+          case 4:
           case "end":
             return _context3.stop();
         }
@@ -184,7 +186,7 @@ function _getAllUsers() {
             return _context4.abrupt("return", users);
 
           case 8:
-            return _context4.abrupt("return", 'None users bro :/');
+            return _context4.abrupt("return", "None users bro :/");
 
           case 9:
             _context4.next = 14;
@@ -234,7 +236,7 @@ function _getUser() {
             return _context5.abrupt("return", user);
 
           case 11:
-            'User Not Found';
+            "User Not Found";
 
           case 12:
             _context5.next = 17;
@@ -265,17 +267,19 @@ function _hello() {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
+            console.log("context", context.user);
+
             if (!context.user) {
-              _context6.next = 4;
+              _context6.next = 5;
               break;
             }
 
-            return _context6.abrupt("return", "Hello,how are you, i am under the water");
-
-          case 4:
-            throw new Error("RuhROh");
+            return _context6.abrupt("return", "Hello how are you I am under the water, glug glug ".concat(success));
 
           case 5:
+            return _context6.abrupt("return", "All your base are belong to us");
+
+          case 6:
           case "end":
             return _context6.stop();
         }

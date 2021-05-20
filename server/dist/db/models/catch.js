@@ -11,7 +11,7 @@ var _db = _interopRequireDefault(require("../db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var Catch = _db["default"].define('catch', {});
+var Catch = _db["default"].define("catch", {});
 
 var _default = Catch;
 exports["default"] = _default;

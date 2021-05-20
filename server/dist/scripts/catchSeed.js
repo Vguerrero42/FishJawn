@@ -5,17 +5,17 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.catches = exports.locations = void 0;
 var crossBay = {
-  name: 'Cross Bay/Shellbank Basin',
+  name: "Cross Bay/Shellbank Basin",
   longitude: 40.64588613907378,
   latitude: -73.83609347597145
 };
 var fortTotten = {
-  name: 'Fort Totten Park',
+  name: "Fort Totten Park",
   longitude: 40.791654657990776,
   latitude: -73.78424799464753
 };
 var northBrotherIsland = {
-  name: 'North Brother Island/Spookyville',
+  name: "North Brother Island/Spookyville",
   longitude: 40.801433115721764,
   latitude: -73.8994225706901
 };

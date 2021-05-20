@@ -1,11 +1,11 @@
-import * as Query from "./query"
-import * as Mutation from "./mutation"
+import * as Query from "./query";
+import * as Mutation from "./mutation";
 
 const rootResolvers = {
   Mutation,
-  Query
-}
+  Query,
+};
 
-const resolvers = [rootResolvers]
+const resolvers = [rootResolvers];
 
-export default resolvers
+export default resolvers;

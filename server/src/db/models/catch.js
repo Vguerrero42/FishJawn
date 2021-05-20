@@ -1,9 +1,7 @@
-import { DataTypes } from 'sequelize'
+import { DataTypes } from "sequelize";
 
-import db from '../db'
+import db from "../db";
 
-const Catch = db.define('catch', {
+const Catch = db.define("catch", {});
 
-})
-
-export default Catch
+export default Catch;

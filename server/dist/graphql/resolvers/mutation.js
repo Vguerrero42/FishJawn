@@ -192,9 +192,17 @@ function _removeUser() {
 
           case 3:
             user = _context5.sent;
+            _context5.next = 6;
+            return _db.User.destroy({
+              where: {
+                id: id
+              }
+            });
+
+          case 6:
             return _context5.abrupt("return", "This user was removed: ".concat(user));
 
-          case 5:
+          case 7:
           case "end":
             return _context5.stop();
         }
@@ -216,7 +224,7 @@ function _login() {
         switch (_context6.prev = _context6.next) {
           case 0:
             email = _ref3.email, password = _ref3.password;
-            console.log('context in login before', context);
+            console.log("context in login before", context);
             _context6.next = 4;
             return _db.User.findOne({
               where: {
@@ -240,21 +248,18 @@ function _login() {
               break;
             }
 
-            throw new Error('Incorrect Password');
+            throw new Error("Incorrect Password");
 
           case 9:
             token = _jsonwebtoken["default"].sign({
               id: user.id,
               email: user.email
             }, JWT_SECRET);
-            context.user = user;
-            console.log('context after success', context);
             return _context6.abrupt("return", {
-              token: token,
-              user: user
+              token: token
             });
 
-          case 13:
+          case 11:
           case "end":
             return _context6.stop();
         }

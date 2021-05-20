@@ -4,4 +4,4 @@ export const typeDefs = `
        name: String!
        description: String!
    }
-`
+`;

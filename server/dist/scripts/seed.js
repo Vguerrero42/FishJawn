@@ -25,7 +25,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var fishes = [];
-var fishObj = JSON.parse(_fs["default"].readFileSync("".concat(_config.FISH_DATA_PATH, "/fishData.txt"), 'utf8'));
+var fishObj = JSON.parse(_fs["default"].readFileSync("".concat(_config.FISH_DATA_PATH, "/fishData.txt"), "utf8"));
 
 for (var fish in fishObj) {
   fishes.push({
@@ -61,7 +61,7 @@ var seed = /*#__PURE__*/function () {
 
           case 10:
             _context.next = 12;
-            return console.log('seed Success!');
+            return console.log("seed Success!");
 
           case 12:
             _db2.db.close();
@@ -101,12 +101,12 @@ var runSeed = /*#__PURE__*/function () {
 
           case 9:
             _context2.prev = 9;
-            console.log('Closing Connection');
+            console.log("Closing Connection");
             _context2.next = 13;
             return _db2.db.close();
 
           case 13:
-            console.log('Connection Closed');
+            console.log("Connection Closed");
             return _context2.finish(9);
 
           case 15:

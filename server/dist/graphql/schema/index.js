@@ -30,7 +30,7 @@ var _resolvers = _interopRequireDefault(require("../resolvers"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\ntype Query {\n  getAllFishes:[Fish]\n  getFish(id: ID!):Fish\n  me:User\n  getAllUsers:[User]\n  getUser(id:ID!):User\n  hello:String\n  \n}\n\ntype Mutation {\n  addFish(name: String!,description:String!): Fish!\n  removeFish(id: ID!): String!\n  updateFish(id: ID!, name: String!): String!\n  login(email:String!,password:String!):AuthPayload!\n  addUser(userName:String!,email:String!,password:String!):AuthPayload!\n  removeUser(id:ID!):String!\n}\n"]);
+  var data = _taggedTemplateLiteral(["\n  type Query {\n    getAllFishes: [Fish]\n    getFish(id: ID!): Fish\n    me: User\n    getAllUsers: [User]\n    getUser(id: ID!): User\n    hello: String\n  }\n\n  type Mutation {\n    addFish(name: String!, description: String!): Fish!\n    removeFish(id: ID!): String!\n    updateFish(id: ID!, name: String!): String!\n    login(email: String!, password: String!): AuthPayload!\n    addUser(userName: String!, email: String!, password: String!): AuthPayload!\n    removeUser(id: ID!): String!\n  }\n"]);
 
   _templateObject = function _templateObject() {
     return data;

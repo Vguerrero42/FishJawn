@@ -1,21 +1,21 @@
-import { DataTypes } from 'sequelize'
-import db from '../db'
+import { DataTypes } from "sequelize";
+import db from "../db";
 
-const Fish = db.define('fish', {
+const Fish = db.define("fish", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   description: {
     type: DataTypes.TEXT,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
-  }
-})
+      notEmpty: true,
+    },
+  },
+});
 
-export default Fish
+export default Fish;

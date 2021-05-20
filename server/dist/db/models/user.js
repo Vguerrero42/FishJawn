@@ -17,7 +17,7 @@ var _db = _interopRequireDefault(require("../db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var User = _db["default"].define('user', {
+var User = _db["default"].define("user", {
   userName: {
     type: _sequelize.DataTypes.STRING,
     allowNull: false,
@@ -45,7 +45,7 @@ var User = _db["default"].define('user', {
       var _this = this;
 
       return function () {
-        return _this.getDataValue('password');
+        return _this.getDataValue("password");
       };
     }
   },
@@ -57,7 +57,7 @@ var User = _db["default"].define('user', {
       var _this2 = this;
 
       return function () {
-        return _this2.getDataValue('salt');
+        return _this2.getDataValue("salt");
       };
     }
   }
@@ -91,7 +91,7 @@ User.encryptPassword = function (plainText, salt) {
 
 
 var setSaltAndPassword = function setSaltAndPassword(user) {
-  if (user.changed('password')) {
+  if (user.changed("password")) {
     user.salt = User.generateSalt();
     user.password = User.encryptPassword(user.password(), user.salt());
   }

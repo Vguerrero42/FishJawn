@@ -1,25 +1,33 @@
-import React,{useEffect} from 'react'
-import { TouchableOpacity,Text, View, Image, Button , SafeAreaView, Alert} from 'react-native'
-import { StatusBar } from 'expo-status-bar';
-import styles from '../style'
-import {useState} from '@react-native-community/hooks'
-import { gql, useLazyQuery, useQuery } from '@apollo/client'
+import React, { useEffect } from "react";
+import {
+  TouchableOpacity,
+  Text,
+  View,
+  Image,
+  Button,
+  SafeAreaView,
+  Alert,
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import styles from "../style";
+import { useState } from "@react-native-community/hooks";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import {MainMap,Header} from './'
-
+import { MainMap, Header } from "./";
 
 const HELLO = gql`
-  query hello{
+  query hello {
     hello
   }
-`
-export default function Home ({navigation}) {
+`;
+export default function Home({ navigation }) {
+  const [hello, { data }] = useLazyQuery(HELLO, {
+    fetchPolicy: "network-only",
+  });
 
-  const [hello,{data}] = useLazyQuery(HELLO)
-
-  if(data && data.hello) console.log('helloDATA',data)
+  if (data && data.hello) console.log("helloDATA", data);
 
   // useEffect( () =>{
   //   const getUser = async() =>{
@@ -30,16 +38,16 @@ export default function Home ({navigation}) {
   //   if(!getUser) {
   //     Alert.alert("YOU ARE NOT LOGGED IN")
   //     navigation.navigate("Login")
-  //   } 
+  //   }
   // })
 
-  const handleMapTouch = () =>{
-    navigation.navigate("Map")
-    }
-  const handleRecentsTouch = () =>{
-    console.log('RUNNING')
-    hello()
-  }
+  const handleMapTouch = () => {
+    navigation.navigate("Map");
+  };
+  const handleRecentsTouch = () => {
+    console.log("RUNNING");
+    hello();
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -49,18 +57,19 @@ export default function Home ({navigation}) {
         </View> */}
         <Header />
       </View>
-      <TouchableOpacity style={styles.recentCatches} onPress={handleRecentsTouch}>
+      <TouchableOpacity
+        style={styles.recentCatches}
+        onPress={handleRecentsTouch}
+      >
         <Text style={styles.text}>Your Recent Catches</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.mapBox}
-        onPress={handleMapTouch}>
+      <TouchableOpacity style={styles.mapBox} onPress={handleMapTouch}>
         <MainMap />
       </TouchableOpacity>
       <View style={styles.footer}>
-        <Text style={styles.text} >Footer</Text>
+        <Text style={styles.text}>Footer</Text>
       </View>
       <StatusBar style="auto" />
     </SafeAreaView>
-  )
+  );
 }
-

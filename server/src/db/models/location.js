@@ -1,28 +1,28 @@
-import { DataTypes } from 'sequelize'
-import db from '../db'
+import { DataTypes } from "sequelize";
+import db from "../db";
 
-const Location = db.define('location', {
-  name:{
-    type:DataTypes.STRING,
-    allowNull:false,
-    validate:{
-      notEmpty:true
-    }
+const Location = db.define("location", {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   longitude: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
+      notEmpty: true,
+    },
   },
   latitude: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      notEmpty: true
-    }
-  }
-})
+      notEmpty: true,
+    },
+  },
+});
 
-export default Location
+export default Location;

@@ -1,60 +1,58 @@
-import {StyleSheet,Platform,StatusBar,Dimensions} from 'react-native'
+import { StyleSheet, Platform, StatusBar, Dimensions } from "react-native";
 
-const white = '#FFFFFF'
+const white = "#FFFFFF";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin:10,
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
+    backgroundColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: 10,
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   header: {
-    flex: .5,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: white
+    flex: 0.5,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: white,
   },
   footer: {
-    flex: .5,
-    alignSelf: 'stretch',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'blue'
+    flex: 0.5,
+    alignSelf: "stretch",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "blue",
   },
   innerHeader: {
     padding: 20,
   },
-  innerFooter: {
-
-  },
+  innerFooter: {},
   recentCatches: {
     borderWidth: 2,
     padding: 20,
-    margin:10,
-    alignSelf: 'stretch',
+    margin: 10,
+    alignSelf: "stretch",
     flex: 1,
-    backgroundColor: 'white'
+    backgroundColor: "white",
   },
   mapBox: {
-    alignSelf:'stretch',
+    alignSelf: "stretch",
     borderWidth: 2,
-    borderColor:'green',
+    borderColor: "green",
     flex: 1,
-    margin:10,
-    alignItems: 'center' 
-   },
+    margin: 10,
+    alignItems: "center",
+  },
   text: {
     fontSize: 20,
     borderWidth: 2,
-    borderStyle: 'solid',
-    borderColor: 'green',
-    alignSelf: 'flex-start',
-    color: 'purple'
-  }
+    borderStyle: "solid",
+    borderColor: "green",
+    alignSelf: "flex-start",
+    color: "purple",
+  },
 });
 
-export default styles
+export default styles;
